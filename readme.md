@@ -3,8 +3,9 @@
 This is a companion repo of [this article](http://example.com).
 
 ## How to build
-
+First, make sure you have node and npm installed on your machine. Then, run:
 ```
+git clone https://github.com/gourmetjs/http2-concat-benchmark.git
 npm install
 npm run build
 ```
@@ -85,6 +86,8 @@ git clone https://github.com/certbot/certbot
 cd certbot
 ./certbot-auto certonly --standalone -d your-server.example.com --debug
 ```
+
+**You will need to have purchased a domain name because certbot can only install SSL on an actual domain, rather than the public IP of your host server.** 
 
 Now you can run NGINX:
 
