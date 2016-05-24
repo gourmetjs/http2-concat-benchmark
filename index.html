@@ -1,0 +1,17 @@
+<!doctype html>
+<head>
+<script>
+var startTime = new Date().getTime();
+</script>
+<%= headerElements() %>
+<%= dummyFiller() %>
+</head>
+<body>
+<pre id="output">
+</pre>
+<script>
+var endTime = new Date().getTime();
+var elapsed = endTime - startTime;
+document.getElementById("output").innerHTML = "Loading time: " + elapsed + "ms";
+</script>
+</body>
