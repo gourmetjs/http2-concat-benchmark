@@ -79,6 +79,7 @@ You can run:
 cp -a ./_build/* /usr/local/nginx/html/
 ```
 
+## SSL Setup
 Because HTTP/2 only works over a HTTPS, you need to install a SSL certificate.
 Easiest way is to use [Let's Encrypt](https://letsencrypt.org/) as follows
 (make sure that NGINX is not running while running this.)
@@ -90,6 +91,7 @@ cd certbot
 ./certbot-auto certonly --standalone -d example.com --debug
 ```
 
+## Finish up
 Now you can run NGINX:
 
 ```
