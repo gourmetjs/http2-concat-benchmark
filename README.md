@@ -103,3 +103,5 @@ To stop:
 ```
 sudo /usr/local/nginx/sbin/nginx -s stop
 ```
+
+Type in example.com (replace with your domain name) and append /1 /6 /50 /1000 to the URL to see the benchmark loading speed for each corresponding number of bundled assets.
