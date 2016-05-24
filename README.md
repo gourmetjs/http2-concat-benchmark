@@ -31,10 +31,11 @@ cd nginx-1.9.15
 make
 sudo make install
 ```
+**Before continuing, make sure you have purchased a domain name because we will need to configure SSL on it. Remember, just the public IP of your host server will NOT work.** 
 
 After installation, modify NGINX's configuration file as follows. (Default path
 is `/usr/local/nginx/nginx.conf` when you build from source code.
-Replace `your-server.example.com` to your server's hostname.):
+REMINDER: Replace `example.com` with your server's hostname.):
 
 ```
 worker_processes  1;
@@ -51,7 +52,7 @@ http {
 
   server {
     listen       80;
-    server_name  your-server.example.com;
+    server_name  example.com;
     location / {
       root   html;
       index  index.html index.htm;
@@ -64,9 +65,9 @@ http {
 
   server {
     listen       443 ssl http2;
-    server_name  your-server.example.com;
-    ssl_certificate /etc/letsencrypt/live/your-server.example.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/your-server.example.com/privkey.pem;
+    server_name  example.com;
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
     ssl_ciphers  HIGH:!aNULL:!MD5;
     location / {
       root   html;
@@ -84,10 +85,8 @@ Easiest way is to use [Let's Encrypt](https://letsencrypt.org/) as follows
 sudo yum install git
 git clone https://github.com/certbot/certbot
 cd certbot
-./certbot-auto certonly --standalone -d your-server.example.com --debug
+./certbot-auto certonly --standalone -d example.com --debug
 ```
-
-**You will need to have purchased a domain name because certbot can only install SSL on an actual domain, rather than the public IP of your host server.** 
 
 Now you can run NGINX:
 
