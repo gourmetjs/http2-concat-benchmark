@@ -6,6 +6,7 @@ This is a companion repo of [this article](http://example.com).
 First, make sure you have node and npm installed on your machine. Then, run:
 ```
 git clone https://github.com/gourmetjs/http2-concat-benchmark.git
+cd http2-concat-benchmark
 npm install
 npm run build
 ```
