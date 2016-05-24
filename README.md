@@ -2,7 +2,7 @@
 
 This is a companion repo of [this article](http://example.com).
 
-## How to build
+## Initial setup & installation
 First, make sure you have node and npm installed on your machine. Then, run:
 ```
 git clone https://github.com/gourmetjs/http2-concat-benchmark.git
@@ -11,11 +11,7 @@ npm install
 npm run build
 ```
 
-You will get 4 directories (`1000`, `50`, `6` and `1`) under `_build` directory.
-Copy these directories to NGINX's HTML directory (default path
-is `/usr/local/nginx/html` when you build from source code).
-
-## Server configuration
+## NGINX Installation and Config
 
 We ran this benchmark test on AWS EC2 t2.small / Amazon Linux 64-bit.
 
@@ -76,6 +72,11 @@ http {
     }
   }
 }
+```
+After you've finished configuring NGINX, copy the 4 directories in the project folder (`1000`, `50`, `6` and `1`) under the `_build` directory to the NGINX HTML directory, which is `/usr/local/nginx/html` when you build from source code).
+You can run:
+```
+cp -a ./_build/* /usr/local/nginx/html/
 ```
 
 Because HTTP/2 only works over a HTTPS, you need to install a SSL certificate.
