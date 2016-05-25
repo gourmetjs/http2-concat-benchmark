@@ -105,3 +105,5 @@ sudo /usr/local/nginx/sbin/nginx -s stop
 ```
 
 Type in example.com (replace with your domain name) and append /1 /6 /50 /1000 to the URL to see the benchmark loading speed for each corresponding number of bundled assets.
+
+To test HTTP2, be sure to type https:// before your domain name, and to benchmark http1.1, just type the domain name as you would normally.
