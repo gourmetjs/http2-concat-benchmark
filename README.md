@@ -2,18 +2,16 @@
 
 This is a companion repo of [this article](http://example.com).
 
-## How to build
-
+## Initial setup & installation
+First, make sure you have node and npm installed on your machine. Then, run:
 ```
+git clone https://github.com/gourmetjs/http2-concat-benchmark.git
+cd http2-concat-benchmark
 npm install
 npm run build
 ```
 
-You will get 4 directories (`1000`, `50`, `6` and `1`) under `_build` directory.
-Copy these directories to NGINX's HTML directory (default path
-is `/usr/local/nginx/html` when you build from source code).
-
-## Server configuration
+## NGINX Installation and Config
 
 We ran this benchmark test on AWS EC2 t2.small / Amazon Linux 64-bit.
 
@@ -30,10 +28,11 @@ cd nginx-1.9.15
 make
 sudo make install
 ```
+**Before continuing, make sure you have purchased a domain name because we will need to configure SSL on it. Remember, just the public IP of your host server will NOT work.** 
 
 After installation, modify NGINX's configuration file as follows. (Default path
 is `/usr/local/nginx/nginx.conf` when you build from source code.
-Replace `your-server.example.com` to your server's hostname.):
+REMINDER: Replace `example.com` with your server's hostname.):
 
 ```
 worker_processes  1;
@@ -50,7 +49,7 @@ http {
 
   server {
     listen       80;
-    server_name  your-server.example.com;
+    server_name  example.com;
     location / {
       root   html;
       index  index.html index.htm;
@@ -63,9 +62,9 @@ http {
 
   server {
     listen       443 ssl http2;
-    server_name  your-server.example.com;
-    ssl_certificate /etc/letsencrypt/live/your-server.example.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/your-server.example.com/privkey.pem;
+    server_name  example.com;
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
     ssl_ciphers  HIGH:!aNULL:!MD5;
     location / {
       root   html;
@@ -74,7 +73,13 @@ http {
   }
 }
 ```
+After you've finished configuring NGINX, copy the 4 directories in the project folder (`1000`, `50`, `6` and `1`) under the `_build` directory to the NGINX HTML directory, which is `/usr/local/nginx/html` when you build from source code).
+You can run:
+```
+cp -a ./_build/* /usr/local/nginx/html/
+```
 
+## SSL Setup
 Because HTTP/2 only works over a HTTPS, you need to install a SSL certificate.
 Easiest way is to use [Let's Encrypt](https://letsencrypt.org/) as follows
 (make sure that NGINX is not running while running this.)
@@ -83,9 +88,10 @@ Easiest way is to use [Let's Encrypt](https://letsencrypt.org/) as follows
 sudo yum install git
 git clone https://github.com/certbot/certbot
 cd certbot
-./certbot-auto certonly --standalone -d your-server.example.com --debug
+./certbot-auto certonly --standalone -d example.com --debug
 ```
 
+## Finish up
 Now you can run NGINX:
 
 ```
@@ -97,3 +103,5 @@ To stop:
 ```
 sudo /usr/local/nginx/sbin/nginx -s stop
 ```
+
+Type in example.com (replace with your domain name) and append /1 /6 /50 /1000 to the URL to see the benchmark loading speed for each corresponding number of bundled assets.
