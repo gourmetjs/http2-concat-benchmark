@@ -118,5 +118,5 @@ Type in www.example.com (replace with your domain name) and append
 each corresponding number of bundled assets.
 
 To test HTTP/2, be sure to type `https://` before your domain name, and to
-benchmark HTTP/1.1, just type the domain name as you would normall without
+benchmark HTTP/1.1, just type the domain name as you would normally without
 `https://`.
