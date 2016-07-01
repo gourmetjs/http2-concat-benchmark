@@ -1,6 +1,6 @@
 ## Benchmark test for concatenation in HTTP/2 environment
 
-This is a companion repo of [this article](http://gourmetjs.github.io/http2/2016/05/30/Correctly-Bundle-Your-Assets-for-Faster-Sites-Over-Http2.html).
+This is a companion repo of [this article](http://gourmetjs.com/blog/http2/2016/05/30/http2-bundling.html).
 
 ## Initial setup & installation
 First, make sure you have node and npm installed on your machine. Then, run:
